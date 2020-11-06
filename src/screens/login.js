@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Header from "../components/header";
 import Signin from "../components/signin";
@@ -20,7 +20,7 @@ const submit = (e, formState, setErrorMessage, history) => {
   })
     .then((res) => {
       localStorage.setItem("token", res.headers["x-access-token"]);
-      history.push("/home/20");
+      history.push("/home");
     })
     .catch((err) => {
       setErrorMessage("Une erreur est survenue");
@@ -28,7 +28,14 @@ const submit = (e, formState, setErrorMessage, history) => {
     });
 };
 
-const Login = (props) => {
+const Login = ({ history }) => {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("Login -> token", token);
+    if (token) {
+      history.push("/");
+    }
+  }, []);
   return (
     <div>
       <Header backgroundColor="green"> </Header>

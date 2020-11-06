@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const Signin = ({ submit }) => {
   const [formState, setFormState] = useState({ username: "", password: "" });
-  const [errorMessage, setErrorMessage] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
   return (
     <StyledForm
